@@ -4,14 +4,18 @@
 // @icon          https://github.com/Eject37/ReTube/raw/main/yt-favicon2.ico
 // @match       *://*.youtube.com/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      Eject
+// @run-at document-start
 // @description 30.10.2023, 22:57:31
 // ==/UserScript==
 
-waitSelector('#guide-button').then(selector => {
-  selector.click()
-})
+(async () => {
+    waitSelector('#guide-button').then(async selector => {
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        if (selector.querySelector('button').getAttribute('aria-pressed') == 'true')
+          selector.click()
+    })
 
 function waitSelector(selector, limit_data) {
 		return new Promise(resolve => {
@@ -51,3 +55,4 @@ function waitSelector(selector, limit_data) {
 				});
 		});
 	}
+  })()
