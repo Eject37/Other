@@ -2,9 +2,10 @@
 * @name ReCord
 * @author Eject
 * @description Улучшение дискорда
-* @version 1.0
+* @version 1.1
 */
-module.exports = class ReCord {
+
+module.exports = class ReCordMain {
 	load() { }
 	start() {
 		const defaultSettings = {
@@ -210,6 +211,9 @@ module.exports = class ReCord {
 			// 	selector.textContent = `Настройки${enable ? '' : ' пользователя'}`
 			// })
 		}
+		function EnablePremium(enable) {
+			BdApi.findModuleByProps("getCurrentUser").getCurrentUser().premiumType = enable ? 2 : null;
+		}
 		function RemoveDownloadWarning() {
 			fix()
 			function fix() {
@@ -224,9 +228,6 @@ module.exports = class ReCord {
 					fix()
 				})
 			}
-		}
-		function EnablePremium(enable) {
-			window.webpackChunkdiscord_app.push([[Math.random()], {}, (req) => { for (const m of Object.keys(req.c).map((x) => req.c[x].exports).filter((x) => x)) { if (m.default && m.default.getCurrentUser !== undefined) { return m.default.getCurrentUser().premiumType = enable ? 2 : null; } } }]);
 		}
 		//#endregion
 		//#region Доп функции
@@ -280,7 +281,7 @@ module.exports = class ReCord {
 	stop() {
 		document.querySelector('#record-menu')?.remove()
 		document.querySelector('#record-menu-style')?.remove()
-		Fixes(false)
-		EnablePremium(false)
+		//Fixes(false)
+		//EnablePremium(false)
 	}
 }
